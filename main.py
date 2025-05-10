@@ -62,7 +62,7 @@ def process_video(video_path):
     class_list = model.names
     cap = cv2.VideoCapture(video_path)
     
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v') #avc1 diganti mp4v
+    fourcc = cv2.VideoWriter_fourcc(*'avc1') 
     out_path = "uploads/output_video.mp4"
     out = cv2.VideoWriter(out_path, fourcc, 20.0, (int(cap.get(3)), int(cap.get(4))))
 
@@ -145,11 +145,10 @@ def process_video(video_path):
                 vehicle['vehicle_type'],
                 vehicle['confidence']
             ])
-
-    fixed_output_path = os.path.join(UPLOAD_FOLDER, "output_video_convert.mp4") #video yang akan diputar di UI 
-    os.system(f"ffmpeg -i {out_path} -vcodec libx264 -pix_fmt yuv420p {fixed_output_path}") #dikonversi agar bisa pemutaran kompatibel dengan browser
     
-    return fixed_output_path, csv_path
+    
+    
+    return out_path, csv_path
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.2", port=3158)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
