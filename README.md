@@ -70,9 +70,7 @@ Contoh:
 
 Contoh tangkapan layar visualisasi:
 
-```
 ![Contoh](image.png)
-```
 
 ---
 
