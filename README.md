@@ -9,7 +9,7 @@ Proyek ini mengimplementasikan sistem pendeteksian dan penghitungan kendaraan be
 Dataset utama bukan berasal dari sumber statis, melainkan dari:
 - Video yang diunggah oleh pengguna melalui antarmuka web.
 
-Deteksi dilakukan menggunakan model YOLOv11 terlatih (`yolo11l.pt`) untuk mengenali kendaraan seperti mobil, motor, bus, dan truk.
+Deteksi dilakukan menggunakan model pre-trained YOLOv11 (`yolo11l.pt`) untuk mengenali kendaraan seperti mobil, motor, bus, dan truk.
 
 ---
 
@@ -90,7 +90,7 @@ Contoh tangkapan layar visualisasi:
 ├── index.html           # UI frontend
 ├── uploads/             # Folder untuk video dan hasil deteksi
 ├── csv_data/            # Folder untuk menyimpan file CSV hasil deteksi
-└── yolo11l.pt           # Model YOLO terlatih
+└── yolo11l.pt           # Model pre-trained YOLO 
 ```
 
 ---
