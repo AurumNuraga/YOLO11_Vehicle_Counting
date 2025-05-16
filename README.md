@@ -8,7 +8,6 @@ Proyek ini mengimplementasikan sistem pendeteksian dan penghitungan kendaraan be
 
 Dataset utama bukan berasal dari sumber statis, melainkan dari:
 - Video yang diunggah oleh pengguna melalui antarmuka web.
-- URL live stream (misalnya RTSP) dari kamera CCTV.
 
 Deteksi dilakukan menggunakan model YOLOv11 terlatih (`yolo11l.pt`) untuk mengenali kendaraan seperti mobil, motor, bus, dan truk.
 
@@ -106,7 +105,3 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 Akses UI di: [http://localhost:8000](http://localhost:8000)
 
 ---
-
-## 📝 Lisensi
-
-MIT License. Bebas digunakan untuk keperluan riset, pendidikan, dan non-komersial.
