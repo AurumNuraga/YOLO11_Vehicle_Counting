@@ -1,10 +1,10 @@
-# 🚗 YOLOv11 Vehicle Counting - Video & Live Stream
+# YOLOv11 Vehicle Counting - Video & Live Stream
 
 Proyek ini mengimplementasikan sistem pendeteksian dan penghitungan kendaraan berbasis YOLOv11. Aplikasi ini dapat mendeteksi dan menghitung kendaraan baik dari video yang diunggah maupun dari siaran langsung CCTV (stream URL).
 
 ---
 
-## 📊 Deskripsi Dataset
+## Deskripsi Dataset
 
 Dataset utama bukan berasal dari sumber statis, melainkan dari:
 - Video yang diunggah oleh pengguna melalui antarmuka web.
@@ -14,7 +14,7 @@ Deteksi dilakukan menggunakan model YOLOv11 terlatih (`yolo11l.pt`) untuk mengen
 
 ---
 
-## ⚙️ Pra-pemrosesan Data
+## Pra-pemrosesan Data
 
 - Setiap frame video dikonversi ke dalam array NumPy.
 - Model YOLOv11 digunakan untuk mendeteksi objek pada setiap frame.
@@ -23,7 +23,7 @@ Deteksi dilakukan menggunakan model YOLOv11 terlatih (`yolo11l.pt`) untuk mengen
 
 ---
 
-## 🧠 Arsitektur Model yang Digunakan
+## Arsitektur Model yang Digunakan
 
 - **Model:** YOLOv11 (dimuat dari file `yolo11l.pt`)
 - **Framework:** Ultralytics YOLO (PyTorch-based)
@@ -32,7 +32,7 @@ Deteksi dilakukan menggunakan model YOLOv11 terlatih (`yolo11l.pt`) untuk mengen
 
 ---
 
-## 🏋️ Strategi Pelatihan
+## Strategi Pelatihan
 
 > Tidak dilakukan pelatihan dalam proyek ini. Model YOLOv11 yang digunakan adalah hasil pelatihan sebelumnya (pretrained model) yang dimuat langsung melalui:
 ```python
@@ -42,7 +42,7 @@ Model ini sudah terlatih untuk mendeteksi kendaraan umum di lingkungan perkotaan
 
 ---
 
-## 📈 Evaluasi Model
+## Evaluasi Model
 
 Evaluasi dilakukan secara kuantitatif melalui:
 - **Jumlah kendaraan yang dihitung secara otomatis.**
