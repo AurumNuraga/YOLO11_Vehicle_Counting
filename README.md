@@ -1,57 +1,57 @@
 # YOLOv11 Vehicle Counting - Video & Live Stream
 
-Proyek ini mengimplementasikan sistem pendeteksian dan penghitungan kendaraan berbasis YOLOv11. Aplikasi ini dapat mendeteksi dan menghitung kendaraan baik dari video yang diunggah maupun dari siaran langsung CCTV (stream URL).
+This project implements a vehicle detection and counting system based on YOLOv11. The application can detect and count vehicles from both uploaded videos and live streams.
 
 ---
 
-## Deskripsi Dataset
+## Dataset Description
 
-Dataset utama bukan berasal dari sumber statis, melainkan dari:
-- Video yang diunggah oleh pengguna melalui antarmuka web.
+The main dataset does not come from a static source, but rather from:
+- Videos uploaded by users through a web interface.
 
-Deteksi dilakukan menggunakan model pre-trained YOLOv11 (`yolo11l.pt`) untuk mengenali kendaraan seperti mobil, motor, bus, dan truk.
-
----
-
-## Pra-pemrosesan Data
-
-- Setiap frame video dikonversi ke dalam array NumPy.
-- Model YOLOv11 digunakan untuk mendeteksi objek pada setiap frame.
-- Tracking ID digunakan untuk menghindari penghitungan ganda pada kendaraan yang sama.
-- Kendaraan yang melewati garis deteksi horizontal dihitung dan dicatat bersama timestamp dan confidence.
+Detection is performed using the pre-trained YOLOv11 model (`yolo11l.pt`) to recognize vehicles such as cars, motorcycles, buses, and trucks.
 
 ---
 
-## Arsitektur Model yang Digunakan
+## Data Preprocessing
 
-- **Model:** YOLOv11 (dimuat dari file `yolo11l.pt`)
+- Each video frame is converted into a NumPy array.
+- The YOLOv11 model is used to detect objects in each frame.
+- Tracking IDs are used to avoid duplicate counting of the same vehicle.
+- Vehicles that cross the horizontal detection line are counted and recorded along with timestamp and confidence.
+
+---
+
+## Model Architecture Used
+
+- **Model:** YOLOv11 (loaded from the file `yolo11l.pt`)
 - **Framework:** Ultralytics YOLO (PyTorch-based)
-- **Kelas yang Dideteksi:** Mobil, Motor, Truk, Bus, dll (kelas 1, 2, 3, 5, 7)
-- **Tracking:** Menggunakan fitur `track(persist=True)` dari Ultralytics untuk ID pelacakan per objek.
+- **Detected Classes:** Car, Motorcycle, Truck, Bus, etc. (classes 1, 2, 3, 5, 7)
+- **Tracking:** Using the `track(persist=True)` feature from Ultralytics for per-object tracking IDs.
 
 ---
 
-## Strategi Pelatihan
+## Training Strategy
 
-> Tidak dilakukan pelatihan dalam proyek ini. Model YOLOv11 yang digunakan adalah hasil pelatihan sebelumnya (pretrained model) yang dimuat langsung melalui:
+> No training is performed in this project. The YOLOv11 model used is a result of prior training (pretrained model) that is loaded directly through:
 ```python
 model = YOLO('yolo11l.pt')
 ```
-Model ini sudah terlatih untuk mendeteksi kendaraan umum di lingkungan perkotaan.
+This model is already trained to detect common vehicles in urban environments.
 
 ---
 
-## Evaluasi Model
+## Model Evaluation
 
-Evaluasi dilakukan secara kuantitatif melalui:
-- **Jumlah kendaraan yang dihitung secara otomatis.**
-- **Confidence score tiap deteksi**, disimpan dalam file `.csv`.
+Evaluation is performed quantitatively through:
+- **Number of vehicles counted automatically.**
+- **Confidence score of each detection**, saved in a `.csv` file.
 
-File CSV berisi:
-- Total kendaraan terdeteksi per jenis.
-- Rincian individual: timestamp, ID kendaraan, tipe, confidence.
+The CSV file contains:
+- Total detected vehicles per type.
+- Individual details: timestamp, vehicle ID, type, confidence.
 
-Contoh:
+Example:
 
 | Timestamp           | Vehicle ID | Vehicle Type | Confidence |
 |---------------------|------------|---------------|-------------|
@@ -59,49 +59,49 @@ Contoh:
 
 ---
 
-## 📊 Visualisasi Performa
+## 📊 Performance Visualization
 
-- Hasil deteksi divisualisasikan langsung pada frame video:
+- Detection results are visualized directly on video frames:
   - Bounding box + label + ID
-  - Garis merah sebagai batas deteksi
-- Video hasil deteksi dapat diputar langsung di antarmuka web.
-- Jumlah kendaraan per kelas ditampilkan dalam UI.
+  - Red line as detection boundary
+- The detection video can be played directly on the web interface.
+- The number of vehicles per class is displayed in the UI.
 
-Contoh tangkapan layar visualisasi:
+Example visualization screenshot:
 
-![Contoh](image.png)
-
----
-
-## 🌐 Antarmuka Web
-
-- File HTML (`index.html`) menyediakan UI untuk:
-  - Upload video dan memprosesnya.
-  - Menampilkan hasil deteksi.
-  - Mengunduh file CSV.
-  - Deteksi kendaraan secara live dari stream.
+![Example](image.png)
 
 ---
 
-## 📁 Struktur Proyek
+## 🌐 Web Interface
+
+- The HTML file (`index.html`) provides a UI for:
+  - Uploading and processing videos.
+  - Displaying detection results.
+  - Downloading the CSV file.
+  - Live vehicle detection from streams.
+
+---
+
+## 📁 Project Structure
 
 ```
 ├── main.py              # FastAPI backend
 ├── index.html           # UI frontend
-├── uploads/             # Folder untuk video dan hasil deteksi
-├── csv_data/            # Folder untuk menyimpan file CSV hasil deteksi
-└── yolo11l.pt           # Model pre-trained YOLO 
+├── uploads/             # Folder for videos and detection results
+├── csv_data/            # Folder for storing CSV files from detection
+└── yolo11l.pt           # Pre-trained YOLO model
 ```
 
 ---
 
-## 🚀 Menjalankan Aplikasi
+## 🚀 Running the Application
 
 ```bash
 pip install fastapi uvicorn ultralytics opencv-python numpy
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Akses UI di: [http://localhost:8000](http://localhost:8000)
+Access the UI at: [http://localhost:8000](http://localhost:8000)
 
 ---
